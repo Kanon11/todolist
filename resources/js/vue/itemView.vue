@@ -1,13 +1,11 @@
 <template>
   <div class="item">
-    <input
-     type="checkbox" 
-     @change="UpdateItem()"
-      v-model="item.completed"
-       />
+    <input type="checkbox" @change="UpdateItem()" v-model="item.completed" />
+    <!-- <input type="hiden" v-model="item.completed_at"> -->
     <span :class="[item.completed ? 'completed' : '', 'itemText']">{{
       item.name
     }}</span>
+
     <button @click="removeItem()" class="trashcan">
       <font-awesome-icon icon="trash"></font-awesome-icon>
     </button>
@@ -21,7 +19,7 @@ export default {
     UpdateItem() {
       axios
         .put("api/item/" + this.item.id, {
-          item: this.item,
+          item: this.item
         })
         .then((response) => {
           if (response.status == 200) {
