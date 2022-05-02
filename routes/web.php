@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\mController;
+use App\Http\Middleware\x;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::view('home','home');
+Route::view('access','access');
+Route::view('noaccess', 'noaccess');
+
+Route::group(['middleware'=>['groupmiddleware']],function(){
+    Route::get('/m', [mController::class, 'mView'])->middleware('routemiddleware');
 });
